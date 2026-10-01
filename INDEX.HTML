@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Personal Fitness Aju | A sua nova academia</title>
+<meta name="description" content="Estrutura premium, ambiente climatizado e professores que realmente acompanham o seu treino. Vem pra Personal Fitness Aju.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Cores base - Tema Claro */
+  --bg: #F4F6F8;
+  --surface: #FFFFFF;
+  --ink: #111827;
+  --muted: #4B5563;
+  --line: #E5E7EB;
+  
+  /* Cor principal (Laranja Energético) */
+  --accent: #FF5E00;
+  --accent-hover: #E05300;
+  --accent-ink: #FFFFFF;
+  --tint: #FFF0E6; 
+  
+  /* Cor do WhatsApp */
+  --wa: #25D366;
+  --wa-hover: #20BA5A;
+
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  
+  box-sizing: border-box;
+  padding-top: var(--safe-t);
+  padding-bottom: var(--safe-b);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1115;
+    --surface: #1C1F26;
+    --ink: #F9FAFB;
+    --muted: #9CA3AF;
+    --line: #374151;
+    --accent: #FF7626;
+    --accent-ink: #000000;
+    --tint: #2B1D16;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0F1115;
+  --surface: #1C1F26;
+  --ink: #F9FAFB;
+  --muted: #9CA3AF;
+  --line: #374151;
+  --accent: #FF7626;
+  --accent-ink: #000000;
+  --tint: #2B1D16;
+}
+
+html {
+  scroll-padding-top: var(--safe-t);
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.6 Figtree, system-ui, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: "Bricolage Grotesque", Figtree, sans-serif;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-weight: 800; font-size: clamp(2.4rem, 6.5vw, 4.2rem); }
+h2 { font-weight: 800; font-size: clamp(2rem, 4.6vw, 3.2rem); }
+h3 { font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: inherit; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section { padding: 90px 0; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--wa);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--wa-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.primary:hover { background: var(--accent-hover); box-shadow: 0 8px 20px rgba(255, 94, 0, 0.25); }
+
+.ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--line);
+}
+.ghost:hover { background: var(--surface); box-shadow: none; transform: translateY(-2px); }
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.logo {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo span { color: var(--accent); }
+
+nav .btn { padding: 10px 20px; font-size: 0.95rem; }
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: center;
+  padding: 40px 0 100px;
+}
+
+.hero p.lead {
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 32em;
+  margin: 24px 0 36px;
+}
+
+.cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.stars { color: #F2A900; letter-spacing: 2px; font-size: 1.2rem; }
+
+/* Cartão Destaque da Hero */
+.plan-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 32px 64px -24px rgba(17, 24, 39, 0.15);
+  transform: rotate(1.5deg);
+  transition: transform 0.3s ease;
+}
+.plan-card:hover { transform: rotate(0deg) translateY(-5px); }
+
+.plan-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.plan-card header b {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.pill {
+  background: var(--tint);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.feature-list { display: grid; gap: 16px; margin-bottom: 24px; }
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.feature-item svg {
+  width: 24px; height: 24px;
+  fill: var(--accent);
+  flex-shrink: 0;
+}
+
+.note {
+  background: var(--tint);
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.note span { display: block; line-height: 1.4; }
+.note b { color: var(--accent); }
+
+/* Faixa de Provas Sociais */
+.band { background: var(--ink); color: var(--bg); padding: 56px 0; }
+.band .wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+.band b {
+  display: block;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.band span { opacity: 0.85; font-size: 1.05rem; font-weight: 500; }
+
+:root[data-theme="dark"] .band, :root:not([data-theme="light"]) .band { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+.head { max-width: 40em; margin-bottom: 56px; }
+.head.center { text-align: center; margin: 0 auto 56px; }
+.head p { color: var(--muted); margin-top: 16px; font-size: 1.15rem; }
+
+/* Passos */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: s; }
+.step {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 32px 24px;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.step::before {
+  content: counter(s);
+  counter-increment: s;
+  position: absolute;
+  top: -15px;
+  right: -5px;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 800;
+  font-size: 8rem;
+  color: var(--bg);
+  line-height: 1;
+  z-index: 0;
+  transition: color 0.3s;
+}
+:root[data-theme="dark"] .step::before, :root:not([data-theme="light"]) .step::before { color: var(--tint); opacity: 0.5; }
+.step:hover::before { color: var(--tint); }
+.step h3, .step p { position: relative; z-index: 1; }
+.step h3 { margin: 0 0 12px; font-size: 1.4rem; }
+.step p { color: var(--muted); font-size: 1rem; }
+
+/* Oferta / Planos */
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.offer {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 32px;
+  padding: 40px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+.offer.highlight {
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(255, 94, 0, 0.1);
+}
+.offer.highlight .badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.offer h3 { font-size: 1.6rem; margin-bottom: 8px; }
+.offer ul { list-style: none; margin: 32px 0; padding: 0; display: grid; gap: 14px; flex-grow: 1; }
+.offer li { padding-left: 32px; position: relative; font-weight: 500; }
+.offer li::before {
+  content: ""; position: absolute; left: 0; top: 0.3em; width: 20px; height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF5E00'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
+}
+.price { font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: 3.2rem; margin: 0; line-height: 1; }
+.price small { font-size: 1rem; font-weight: 500; color: var(--muted); display: block; margin-top: 4px; font-family: Figtree, sans-serif; }
+.offer .btn { width: 100%; margin-top: auto; }
+
+/* Depoimentos */
+.quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+blockquote {
+  margin: 0; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 24px; padding: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+blockquote p { margin: 16px 0 20px; font-size: 1.05rem; font-style: italic; }
+cite { font-style: normal; font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 12px; }
+cite img { width: 44px; height: 44px; border-radius: 50%; background: var(--bg); object-fit: cover; }
+cite div { display: flex; flex-direction: column; }
+cite small { font-weight: 500; color: var(--muted); font-size: 0.85rem; }
+
+/* Estrutura / Sobre */
+.about { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: center; }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.photo {
+  border-radius: 24px; background: linear-gradient(135deg, var(--tint), rgba(255, 94, 0, 0.2));
+  aspect-ratio: 4/5; display: grid; place-items: center; color: var(--accent); font-weight: 700; font-size: 1.2rem; text-align: center; padding: 20px;
+}
+.photo:nth-child(2) { aspect-ratio: 4/6; transform: translateY(30px); background: linear-gradient(135deg, var(--bg), var(--line)); color: var(--muted); }
+.about p + p { margin-top: 16px; }
+.about p { color: var(--muted); font-size: 1.1rem; }
+.feature-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.tag { background: var(--bg); border: 1px solid var(--line); padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; }
+
+/* FAQ */
+details { border-bottom: 1px solid var(--line); padding: 24px 0; }
+summary {
+  cursor: pointer; font-weight: 700; font-size: 1.15rem; list-style: none;
+  display: flex; justify-content: space-between; gap: 16px; align-items: center;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "+"; font-size: 1.8rem; font-weight: 400; line-height: 1; color: var(--accent); transition: transform 0.3s ease;
+}
+details[open] summary::after { transform: rotate(45deg); }
+details p { color: var(--muted); margin-top: 16px; max-width: 45em; font-size: 1.05rem; line-height: 1.7; }
+
+/* Final CTA */
+.final {
+  background: var(--ink); color: var(--bg); border-radius: 40px;
+  padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+}
+:root[data-theme="dark"] .final, :root:not([data-theme="light"]) .final { background: var(--surface); border: 1px solid var(--line); }
+.final h2 { color: #fff; }
+.final p { margin: 20px auto 36px; max-width: 32em; font-size: 1.15rem; opacity: 0.85; }
+
+footer { padding: 48px 0 120px; color: var(--muted); font-size: 0.95rem; text-align: center; font-weight: 500; }
+
+/* Botão Flutuante */
+.fab {
+  position: fixed; right: 24px; bottom: calc(24px + var(--safe-b)); z-index: 99;
+  width: 64px; height: 64px; border-radius: 50%; background: var(--wa);
+  display: grid; place-items: center; box-shadow: 0 12px 28px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s;
+}
+.fab:hover { transform: scale(1.08); background: var(--wa-hover); }
+.fab svg { width: 34px; height: 34px; fill: #fff; }
+
+@media (max-width: 900px) {
+  section { padding: 70px 0; }
+  .hero, .about { grid-template-columns: 1fr; gap: 40px; }
+  .hero { text-align: center; }
+  .hero p.lead { margin-left: auto; margin-right: auto; }
+  .cta-row { justify-content: center; }
+  .proof { justify-content: center; }
+  .plan-card { transform: none; max-width: 400px; margin: 0 auto; }
+  .band .wrap, .steps, .offer-grid, .quotes { grid-template-columns: 1fr; }
+  .photo:nth-child(2) { transform: none; }
+  .head { text-align: center; margin-left: auto; margin-right: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn, .plan-card, summary::after, .fab { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">Personal Fitness <span>Aju</span></a>
+    <a class="btn js-wa" href="#" data-msg="Olá! Vi o site da Personal Fitness Aju e gostaria de saber mais sobre os planos.">Falar no WhatsApp</a>
+  </nav>
+
+  <div class="hero">
+    <div>
+      <h1>A sua nova segunda casa para superar limites.</h1>
+      <p class="lead">Estrutura premium, ambiente 100% climatizado e professores que realmente acompanham o seu treino. Chega de academias lotadas onde você é só mais um número.</p>
+      <div class="cta-row">
+        <a class="btn primary js-wa" href="#" data-msg="Olá! Quero conhecer a estrutura da Personal Fitness Aju e ver os planos.">
+          Ver planos e valores
+        </a>
+        <a class="btn ghost" href="#estrutura">Conhecer estrutura</a>
+      </div>
+      <div class="proof">
+        <span class="stars" aria-hidden="true">★★★★★</span> 
+        Excelente estrutura! Eleita a melhor da região pelos alunos.
+      </div>
+    </div>
+    
+    <aside class="plan-card" aria-label="Destaques do Plano">
+      <header><b>Estrutura Completa</b><span class="pill">Tudo liberado</span></header>
+      
+      <div class="feature-list">
+        <div class="feature-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          Área de Musculação Premium
+        </div>
+        <div class="feature-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          Espaço Cardio com TVs
+        </div>
+        <div class="feature-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          Aulas de Dança e Funcional
+        </div>
+      </div>
+      
+      <div class="note">
+        <span aria-hidden="true">🏋️‍♂️</span>
+        <span><b>Bônus:</b> Avaliação física inicial inclusa na matrícula!</span>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="band"><div class="wrap">
+  <div><b>100%</b><span>Ambiente Climatizado</span></div>
+  <div><b>+20</b><span>Aulas Coletivas na Semana</span></div>
+  <div><b>7 Dias</b><span>Abertos de Segunda a Domingo</span></div>
+</div></div>
+
+<section id="estrutura" style="padding-top:100px"><div class="wrap about">
+  <div class="photo-grid">
+    <div class="photo">Foto da Musculação<br><span style="font-size:0.8rem;font-weight:500;opacity:0.8">(Adicione imagem real do espaço)</span></div>
+    <div class="photo">Foto da Recepção<br><span style="font-size:0.8rem;font-weight:500;opacity:0.8">(Adicione imagem real do espaço)</span></div>
+  </div>
+  <div>
+    <h2 style="margin-bottom: 20px;">Treine com conforto e equipamentos de ponta</h2>
+    <p>Na Personal Fitness Aju, nós acreditamos que o ambiente faz toda a diferença nos seus resultados. Nossa área de musculação conta com máquinas novas e biomecânica avançada para evitar lesões.</p>
+    <p>Além disso, nossos professores estão sempre circulando no salão. Se você tiver dúvidas sobre um movimento, sempre terá um profissional por perto para corrigir e orientar.</p>
+    
+    <div class="feature-tags">
+      <span class="tag">💪 Aparelhos Novos</span>
+      <span class="tag">🚿 Vestiários Amplos</span>
+      <span class="tag">🚗 Estacionamento</span>
+      <span class="tag">🥤 Lanchonete/Suplementos</span>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="head center">
+    <h2>Como começar a treinar com a gente</h2>
+    <p>O processo é rápido, simples e sem burocracia.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <h3>Chame no WhatsApp</h3>
+      <p>Clique em qualquer botão do site, fale com nossa recepção e tire todas as suas dúvidas sobre horários e planos disponíveis.</p>
+    </div>
+    <div class="step">
+      <h3>Faça sua Matrícula</h3>
+      <p>Você pode fazer o processo todo online pelo celular ou agendar uma visita presencial para conhecer o espaço antes de fechar.</p>
+    </div>
+    <div class="step">
+      <h3>Treino Montado</h3>
+      <p>No seu primeiro dia, um professor fará sua avaliação e montará uma ficha exclusiva para seus objetivos. Só vestir a roupa e vir!</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="planos" style="background: var(--surface); padding-top: 100px; padding-bottom: 100px;">
+  <div class="wrap">
+    <div class="head center">
+      <h2>Escolha o plano ideal para você</h2>
+      <p>Sem taxas ocultas. Acesso total a todas as áreas da academia.</p>
+    </div>
+    
+    <div class="offer-grid">
+      <!-- Plano Mensal -->
+      <div class="offer">
+        <h3>Plano Mensal</h3>
+        <p class="price">R$ 119<small>/mês</small></p>
+        <ul>
+          <li>Acesso livre à musculação</li>
+          <li>Acesso à área de cardio</li>
+          <li>Professor no salão</li>
+          <li>Vestiários completos</li>
+        </ul>
+        <a class="btn ghost js-wa" href="#" data-msg="Olá! Gostaria de fazer a matrícula no Plano Mensal de R$ 119.">Quero este plano</a>
+      </div>
+      
+      <!-- Plano Anual/Semestral -->
+      <div class="offer highlight">
+        <span class="badge">Mais Vantajoso</span>
+        <h3>Plano VIP (Anual)</h3>
+        <p class="price">R$ 89<small>/mês</small></p>
+        <ul>
+          <li><strong>Tudo do plano mensal</strong></li>
+          <li>Aulas de FitDance e Funcional</li>
+          <li>Avaliação física trimestral</li>
+          <li>Zero taxa de matrícula</li>
+          <li>Pode trazer 1 amigo por mês</li>
+        </ul>
+        <a class="btn primary js-wa" href="#" data-msg="Olá! Gostaria de aproveitar a condição do Plano VIP Anual. Como faço?">Quero o Plano VIP</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section><div class="wrap">
+  <div class="head">
+    <h2>O que os nossos alunos dizem</h2>
+    <p>A satisfação de quem treina aqui todos os dias.</p>
+  </div>
+  <div class="quotes">
+    <blockquote>
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <p>"Academia sensacional! Climatizada, aparelhos novos e não fica insuportável de cheia nos horários de pico. Os professores dão atenção de verdade."</p>
+      <cite>
+        <div>
+          Carlos Silva
+          <small>Aluno há 1 ano</small>
+        </div>
+      </cite>
+    </blockquote>
+    <blockquote>
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <p>"Fazia anos que não conseguia manter a rotina de ir pra academia. O ambiente aqui me motivou muito. As aulas de FitDance são as melhores!"</p>
+      <cite>
+        <div>
+          Amanda Costa
+          <small>Aluna há 6 meses</small>
+        </div>
+      </cite>
+    </blockquote>
+    <blockquote>
+      <span class="stars" aria-hidden="true">★★★★★</span>
+      <p>"Limpeza impecável, desde os aparelhos até o vestiário. A recepção é sempre sorridente e o preço é muito justo pela estrutura oferecida."</p>
+      <cite>
+        <div>
+          Ricardo Mendes
+          <small>Aluno há 2 anos</small>
+        </div>
+      </cite>
+    </blockquote>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap" style="max-width:800px">
+  <div class="head"><h2>Perguntas Frequentes</h2></div>
+  <details>
+    <summary>Vocês cobram taxa de matrícula?</summary>
+    <p>No Plano VIP Anual e Semestral a taxa de matrícula é totalmente isenta! Para os planos mensais, consulte nossa recepção no WhatsApp para ver se há alguma promoção vigente.</p>
+  </details>
+  <details>
+    <summary>Quais são os horários de funcionamento?</summary>
+    <p>Funcionamos de Segunda a Sexta das 05h00 às 23h00, Sábados das 07h00 às 16h00 e Domingos das 08h00 às 13h00. Você tem flexibilidade total para treinar no melhor horário para sua rotina.</p>
+  </details>
+  <details>
+    <summary>Preciso pagar a mais para ter minha ficha de treino?</summary>
+    <p>Não! A montagem e atualização da sua ficha de treino já estão inclusas em qualquer plano escolhido. Nossos professores farão uma breve entrevista com você para montar a melhor rotina de exercícios.</p>
+  </details>
+  <details>
+    <summary>Aceitam Gympass ou TotalPass?</summary>
+    <p>Sim! Atendemos planos corporativos. Chame no WhatsApp e informe qual a sua plataforma e plano para confirmarmos o acesso.</p>
+  </details>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="final">
+    <h2>Pronto para começar sua transformação?</h2>
+    <p>Não deixe para a próxima segunda-feira. Chame nossa equipe no WhatsApp agora, agende uma aula experimental ou já garanta sua vaga.</p>
+    <a class="btn js-wa" href="#" data-msg="Olá! Quero tirar uma dúvida e conhecer a Personal Fitness Aju.">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.700-1.100-4.400-3.800-4.600-4-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.500.2.600.8 2 .8 2.100.1.100.1.300 0 .5-.1.200-.2.300-.3.500-.2.200-.3.300-.1.600.2.300.7 1.200 1.500 1.900 1 .9 1.900 1.200 2.200 1.300.3.100.4.100.6-.1.200-.2.700-.8.900-1.100.2-.3.400-.2.600-.1l2 1c.3.100.5.200.6.300.1.200.1.800-.1 1.400Z"/></svg>
+      Chamar no WhatsApp
+    </a>
+  </div>
+</div></section>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 Personal Fitness Aju. Todos os direitos reservados.
+  </div>
+</footer>
+
+<a class="fab js-wa" href="#" data-msg="Olá! Vi o site e quero saber mais sobre as mensalidades." aria-label="Chamar no WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.2-.7-2.700-1.100-4.400-3.800-4.600-4-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.500.2.600.8 2 .8 2.100.1.100.1.300 0 .5-.1.200-.2.300-.3.500-.2.200-.3.300-.1.600.2.300.7 1.200 1.500 1.900 1 .9 1.900 1.200 2.200 1.300.3.100.4.100.6-.1.200-.2.700-.8.900-1.100.2-.3.400-.2.600-.1l2 1c.3.100.5.200.6.300.1.200.1.800-.1 1.400Z"/></svg>
+</a>
+
+<script>
+// Substitua o número abaixo pelo WhatsApp real da academia
+var WHATSAPP = "557991538918"; 
+
+document.querySelectorAll(".js-wa").forEach(function(a){
+  var msg = encodeURIComponent(a.dataset.msg || "");
+  a.href = "https://wa.me/" + WHATSAPP + "?text=" + msg;
+  a.target = "_blank";
+  a.rel = "noopener";
+});
+</script>
+</body>
+</html>
